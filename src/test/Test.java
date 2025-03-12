@@ -32,7 +32,6 @@ public class Test {
         enregistrerParticipation(activite2, etudiant2);
 
         filtrerParticipantsParActivite(activite1);
-
         
         rechercherActivite(1); 
     }
@@ -52,7 +51,7 @@ public class Test {
     }
 
     private static void enregistrerParticipation(Activite activite, Etudiant etudiant) {
-        ParticipationActivite participation = new ParticipationActivite(0, activite, etudiant);
+        ParticipationActivite participation = new ParticipationActivite(activite, etudiant);
         participationService.create(participation);
         System.out.println("Participation enregistrée pour : " + etudiant.getNom() + " à l'activité " + activite.getIntitule());
     }
