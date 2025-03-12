@@ -14,6 +14,12 @@ public class Activite {
 		this.date = date;
 		this.description = description;
 	}
+      public Activite( String intitule, Date date, String description) {
+		
+		this.intitule = intitule;
+		this.date = date;
+		this.description = description;
+	}
 
 	public int getId() {
 		return id;

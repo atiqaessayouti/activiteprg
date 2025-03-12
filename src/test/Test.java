@@ -16,14 +16,14 @@ public class Test {
 
     public static void main(String[] args) {
         // Ajouter une activité
-        Activite activite1 = new Activite(0, "Séminaire de Gestion", new Date(), "Un séminaire sur la gestion moderne.");
-        Activite activite2 = new Activite(0, "Atelier de Programmation", new Date(), "Un atelier pratique sur la programmation.");
+        Activite activite1 = new Activite( "Séminaire de Gestion", new Date(), "Un séminaire sur la gestion moderne.");
+        Activite activite2 = new Activite("Atelier de Programmation", new Date(), "Un atelier pratique sur la programmation.");
         ajouterActivite(activite1);
         ajouterActivite(activite2);
 
         // Ajouter des étudiants
-        Etudiant etudiant1 = new Etudiant(0, "Essayouti", "Atiqa", "Essayouti.atiqa@example.com");
-        Etudiant etudiant2 = new Etudiant(0, "bidas", "Zineb", "bidas.zineb@example.com");
+        Etudiant etudiant1 = new Etudiant("Essayouti", "Atiqa", "Essayouti.atiqa@example.com");
+        Etudiant etudiant2 = new Etudiant("bidas", "Zineb", "bidas.zineb@example.com");
         ajouterEtudiant(etudiant1);
         ajouterEtudiant(etudiant2);
 
@@ -31,8 +31,10 @@ public class Test {
         enregistrerParticipation(activite1, etudiant1);
         enregistrerParticipation(activite2, etudiant2);
 
+        // Filtrer participants par activité
         filtrerParticipantsParActivite(activite1);
-        
+
+        // Rechercher activité
         rechercherActivite(1); 
     }
 
@@ -52,8 +54,11 @@ public class Test {
 
     private static void enregistrerParticipation(Activite activite, Etudiant etudiant) {
         ParticipationActivite participation = new ParticipationActivite(activite, etudiant);
-        participationService.create(participation);
-        System.out.println("Participation enregistrée pour : " + etudiant.getNom() + " à l'activité " + activite.getIntitule());
+        if (participationService.create(participation)) {
+            System.out.println("Participation enregistrée pour : " + etudiant.getNom() + " à l'activité " + activite.getIntitule());
+        } else {
+            System.out.println("Erreur lors de l'enregistrement de la participation pour : " + etudiant.getNom());
+        }
     }
 
     private static void filtrerParticipantsParActivite(Activite activite) {
