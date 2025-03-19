@@ -85,4 +85,22 @@ public class ParticipationActiviteService implements IDao<ParticipationActivite>
     public boolean update(ParticipationActivite o) {
         throw new UnsupportedOperationException("Not supported yet."); // To be implemented if needed
     }
+
+  public List<ParticipationActivite> findByActivite(int idActivite) {
+    List<ParticipationActivite> participations = new ArrayList<>();
+    String req = "SELECT * FROM participationactivite WHERE activite_id = ?";
+    try {
+        PreparedStatement ps = connexion.getCn().prepareStatement(req);
+        ps.setInt(1, idActivite);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Activite activite = activiteService.findById(rs.getInt("activite_id"));
+            Etudiant etudiant = etudiantService.findById(rs.getInt("etudiant_id"));
+            participations.add(new ParticipationActivite(activite, etudiant));
+        }
+    } catch (SQLException ex) {
+        System.out.println("Erreur lors de la récupération des participations par activité : " + ex.getMessage());
+    }
+    return participations;
+}
 }

@@ -14,6 +14,10 @@ public class ParticipationActivite {
         this.etudiant = etudiant;
     }
 
+    public ParticipationActivite(int id_activite, int id_etudiant) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public Activite getActivite() {
         return activite;
     }
@@ -29,4 +33,5 @@ public class ParticipationActivite {
     public void setEtudiant(Etudiant etudiant) {
         this.etudiant = etudiant;
     }
+    
 }

@@ -3,53 +3,66 @@ package beans;
 import java.util.Date;
 
 public class Activite {
-	private int id;
-	private String intitule;
-	private Date date;
-	private String description;
+    private int id;
+    private String intitule;
+    private Date date;
+    private String description;
 
-	public Activite(int id, String intitule, Date date, String description) {
-		this.id = id;
-		this.intitule = intitule;
-		this.date = date;
-		this.description = description;
-	}
-      public Activite( String intitule, Date date, String description) {
-		
-		this.intitule = intitule;
-		this.date = date;
-		this.description = description;
-	}
+    // Constructeur avec ID
+    public Activite(int id, String intitule, Date date, String description) {
+        this.id = id;
+        this.intitule = intitule;
+        this.date = date;
+        this.description = description;
+    }
 
-	public int getId() {
-		return id;
-	}
+    // Constructeur sans ID
+    public Activite(String intitule, Date date, String description) {
+        this.intitule = intitule;
+        this.date = date;
+        this.description = description;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    // Supprimer ce constructeur s'il n'est pas nécessaire
+    // public Activite(String intitule, String description, Date date) {
+    //     throw new UnsupportedOperationException("Not supported yet.");
+    // }
 
-	public String getIntitule() {
-		return intitule;
-	}
+    // Getters et Setters
+    public int getId() {
+        return id;
+    }
 
-	public void setIntitule(String intitule) {
-		this.intitule = intitule;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public Date getDate() {
-		return date;
-	}
+    public String getIntitule() {
+        return intitule;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    public void setIntitule(String intitule) {
+        this.intitule = intitule;
+    }
 
-	public String getDescription() {
-		return description;
-	}
+    public Date getDate() {
+        return date;
+    }
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return intitule;
+    }
 }

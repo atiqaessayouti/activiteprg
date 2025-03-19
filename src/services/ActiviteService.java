@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package services;
+
 import beans.Activite;
 import connexion.Connexion;
 import dao.IDao;
@@ -12,14 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
- *
- * @author HP
+ * Service pour la gestion des activités.
  */
-
-
-
-
 public class ActiviteService implements IDao<Activite> {
     private final Connexion connexion;
 
@@ -105,5 +97,26 @@ public class ActiviteService implements IDao<Activite> {
         }
         return activites;
     }
+
+    // New method to search activities by criteria
+   public List<Activite> findByCriteria(String criteria) {
+    List<Activite> activites = new ArrayList<>();
+    String req = "SELECT * FROM Activité WHERE intitule LIKE ? OR description LIKE ?";
+    try {
+        PreparedStatement ps = connexion.getCn().prepareStatement(req);
+        ps.setString(1, "%" + criteria + "%");
+        ps.setString(2, "%" + criteria + "%");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            activites.add(new Activite(rs.getInt("id"), rs.getString("intitule"), rs.getDate("date"), rs.getString("description")));
+        }
+    } catch (SQLException ex) {
+        System.out.println("Erreur lors de la recherche des activités : " + ex.getMessage());
+    }
+    return activites;
 }
 
+    public List<Activite> findByCriteria() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+}

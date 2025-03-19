@@ -10,6 +10,7 @@ public class Etudiant {
 	private String nom;
 	private String prenom;
 	private String email;
+    public Object getActivite;
 
 	public Etudiant(int id, String nom, String prenom, String email) {
 		this.id = id;
@@ -55,4 +56,11 @@ public class Etudiant {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+    @Override
+    public String toString() {
+        return  nom + " "+prenom;
+    }
+
+   
 }
